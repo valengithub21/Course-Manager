@@ -51,6 +51,12 @@ export default function App() {
     } else {
       document.documentElement.classList.remove('dark');
     }
+
+    // Dynamic theme-color sync for mobile status bar and navigation bar
+    const metaTags = document.querySelectorAll('meta[name="theme-color"]');
+    metaTags.forEach(meta => {
+      meta.setAttribute('content', isDarkMode ? '#111827' : '#ffffff');
+    });
   }, [isDarkMode]);
 
   const [selectedSubjectId, setSelectedSubjectId] = useState<string | null>(null);
@@ -150,9 +156,9 @@ export default function App() {
   };
 
   return (
-    <div className={`min-h-screen flex items-center justify-center p-0 sm:p-4 md:p-8 transition-colors duration-300 ${isDarkMode ? 'dark bg-gray-950 text-white' : 'bg-gray-200 text-gray-900'}`}>
+    <div className={`min-h-[100dvh] w-full flex items-center justify-center p-0 sm:p-4 md:p-8 transition-colors duration-300 ${isDarkMode ? 'dark bg-gray-900 sm:bg-gray-950 text-white' : 'bg-white sm:bg-gray-100 text-gray-900'}`}>
       {/* Mobile Device Frame Simulator for Desktop */}
-      <div className={`w-full h-[100dvh] sm:h-[850px] sm:max-w-[390px] sm:rounded-[2.5rem] sm:shadow-2xl overflow-hidden flex flex-col relative border-0 sm:border-[8px] transition-colors duration-300 ${isDarkMode ? 'bg-gray-900 border-gray-800 shadow-[0_0_50px_rgba(0,0,0,0.5)]' : 'bg-white border-gray-900'}`}>
+      <div className={`w-full h-[100dvh] sm:h-[850px] sm:max-w-[390px] sm:rounded-[2.5rem] sm:shadow-2xl overflow-hidden flex flex-col relative border-0 sm:border-[8px] transition-colors duration-300 ${isDarkMode ? 'bg-gray-900 border-gray-800 shadow-[0_0_50px_rgba(0,0,0,0.5)]' : 'bg-white border-gray-900 shadow-xl'}`}>
         
         {/* Dynamic View Area */}
         {renderView()}

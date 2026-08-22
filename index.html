@@ -2,20 +2,21 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
     <title>Mis Estudios</title>
     <meta name="description" content="Organizador de estudios universitarios." />
-    <meta name="theme-color" content="#3b82f6" />
+    <meta name="theme-color" content="#ffffff" id="theme-color-meta" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#111827" />
     <link rel="manifest" href="./manifest.json" />
     <link rel="icon" type="image/svg+xml" href="./icon.svg" />
     <link rel="apple-touch-icon" href="./icon.svg" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
     <meta property="og:title" content="Mis Estudios" />
     <meta property="og:description" content="Organizador de estudios universitarios." />
     <meta property="og:type" content="website" />
   </head>
-  <body class="bg-gray-100">
+  <body class="bg-white dark:bg-gray-900 min-h-screen">
     <div id="root"></div>
     <script>
       if ('serviceWorker' in navigator) {

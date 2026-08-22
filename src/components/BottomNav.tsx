@@ -15,7 +15,10 @@ export function BottomNav({ currentView, onChangeView }: BottomNavProps) {
   ] as const;
 
   return (
-    <div className="bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 px-6 py-3 flex justify-between items-center pb-safe">
+    <div 
+      className="bg-white dark:bg-gray-900 border-t border-gray-100 dark:border-gray-800 px-6 pt-3 flex justify-between items-center shrink-0"
+      style={{ paddingBottom: 'max(0.75rem, env(safe-area-inset-bottom, 0.75rem))' }}
+    >
       {navItems.map((item) => {
         const Icon = item.icon;
         const isActive = currentView === item.id || (currentView === 'subject' && item.id === 'home');
