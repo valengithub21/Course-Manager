@@ -6,7 +6,7 @@
     <title>Mis Estudios</title>
     <meta name="description" content="Organizador de estudios universitarios." />
     <meta name="theme-color" content="#3b82f6" />
-    <link rel="manifest" href="/manifest.json" />
+    <link rel="manifest" href="./manifest.json" />
     <link rel="apple-touch-icon" href="https://placehold.co/192x192/3b82f6/ffffff/png?text=E" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -19,7 +19,7 @@
     <script>
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
-          navigator.serviceWorker.register('/sw.js').catch(err => {
+          navigator.serviceWorker.register('./sw.js').catch(err => {
             console.log('SW registration failed: ', err);
           });
         });
