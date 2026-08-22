@@ -1,13 +1,14 @@
-const CACHE_NAME = 'mis-estudios-v4';
+const CACHE_NAME = 'mis-estudios-v5';
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
       return cache.addAll([
-        './',
         './index.html',
         './manifest.json',
-      ]);
+      ]).catch((err) => {
+        console.warn('Cache initial add error: ', err);
+      });
     })
   );
   self.skipWaiting();
@@ -27,27 +28,27 @@ self.addEventListener('activate', (event) => {
 });
 
 self.addEventListener('fetch', (event) => {
-  // Ignoramos peticiones a otras APIs
-  if (!event.request.url.startsWith(self.location.origin) || event.request.method !== 'GET') {
-    return;
-  }
+  if (event.request.method !== 'GET') return;
+  if (!event.request.url.startsWith(self.location.origin)) return;
 
-  // Network First Strategy para asegurar que siempre veas la última versión si hay internet
   event.respondWith(
-    fetch(event.request).then((response) => {
-      if (!response || response.status !== 200 || response.type !== 'basic') {
+    fetch(event.request)
+      .then((response) => {
+        if (response && response.status === 200) {
+          const responseToCache = response.clone();
+          caches.open(CACHE_NAME).then((cache) => {
+            cache.put(event.request, responseToCache);
+          });
+        }
         return response;
-      }
-      
-      const responseToCache = response.clone();
-      caches.open(CACHE_NAME).then((cache) => {
-        cache.put(event.request, responseToCache);
-      });
-      
-      return response;
-    }).catch(() => {
-      // Si no hay red, buscamos en el caché
-      return caches.match(event.request);
-    })
+      })
+      .catch(() => {
+        return caches.match(event.request).then((cachedResponse) => {
+          if (cachedResponse) return cachedResponse;
+          if (event.request.mode === 'navigate') {
+            return caches.match('./index.html');
+          }
+        });
+      })
   );
 });
