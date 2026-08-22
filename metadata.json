@@ -1,0 +1,8 @@
+{
+  "name": "Remix Mis Estudios",
+  "description": "PWA para organizar materias, cronogramas, clases y repasos de la facultad.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
