@@ -1,7 +1,8 @@
 {
   "name": "Mis Estudios",
   "short_name": "Estudios",
-  "start_url": "/",
+  "start_url": "./",
+  "scope": "./",
   "display": "standalone",
   "background_color": "#f9fafb",
   "theme_color": "#3b82f6",

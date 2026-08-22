@@ -1,12 +1,12 @@
-const CACHE_NAME = 'mis-estudios-v2';
+const CACHE_NAME = 'mis-estudios-v4';
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
       return cache.addAll([
-        '/',
-        '/index.html',
-        '/manifest.json',
+        './',
+        './index.html',
+        './manifest.json',
       ]);
     })
   );
